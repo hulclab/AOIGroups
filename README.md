@@ -14,7 +14,13 @@ If you want to run the scripts on other systems or if you need to modify the scr
 
 ## Usage
 
-Coming soon...
+The two scripts are meant to be used as command-line tools. 
+
+Detailed description coming soon...
+
+### smi_aoi_group
+
+### tobii-aoi-group
 
 ## Authors
 
