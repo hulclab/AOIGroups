@@ -101,7 +101,7 @@ for line in open(groupssource):
         for aoi in group:
             group_char_count += len(re.sub(r'\d', '', aoi_names[stimulus][int_def(aoi)]))
             group_str += aoi_names[stimulus][int_def(aoi)] + " "
-    print("Processing %s... " % stimulus, end="");
+    print("Processing {}... ".format(stimulus), end="")
     for participant, part_data in data[stimulus].items():
         total_dwelltime = 0
         num_fix = 0

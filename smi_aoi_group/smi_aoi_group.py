@@ -74,11 +74,11 @@ so.write("Stimulus\tAOI group\tParticipant\tTotal dwell time\tTotal num fixation
 for line in open(groupssource):
     if len(line.strip()) <= 1:
         continue
-    print("Processing {}... ".format(stimulus), end="")
     group = re.split(r"[\t,]", line.strip())
     if len(group) <= 1:
         continue
     stimulus = group.pop(0)
+    print("Processing {}... ".format(stimulus), end="")
     max_group_index = int(max(group, key=int))
     group_word_count = len(group)
     group_char_count = 0
