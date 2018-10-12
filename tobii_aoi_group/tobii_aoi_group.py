@@ -89,6 +89,8 @@ do = open(debugoutfile, 'w')
 so = open(statsoutfile, 'w')
 so.write("Stimulus\tAOI group\tParticipant\tTotal dwell time\tTotal num fixation\tFirst fixation start\tFirst fixation duration\tFirst pass duration\tFirst pass num fixations\tSecond pass start\tSecond pass durations\tSecond pass num fixations\tRe-readings duration\tTotal Skip\tNum regressions into\tSources regressions into\tNum regressions out of\tTargets regressions out of\tTrial start time\tGroup word count\tGroup char count\n")
 for line in open(groupssource):
+    if len(line.strip()) <= 1:
+        continue
     group = re.split(r"[\t,]", line.strip())
     stimulus = group.pop(0)
     max_group_index = int(max(group, key=int))

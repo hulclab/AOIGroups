@@ -8,20 +8,28 @@ import string
 import argparse
 from collections import defaultdict
 
+
+def strdict():
+    return defaultdict(str)
+
+
 def hash3d():
-    return defaultdict(dict)
+    return defaultdict(strdict)
+
 
 def int_def(value):
     try:
         return int(value)
-    except:
+    except ValueError:
         return 0
+
 
 def int_strip(value):
     try:
         return int(value.strip(string.ascii_letters))
-    except:
+    except ValueError:
         return 0
+
 
 parser = argparse.ArgumentParser(description='Process smi export data.')
 parser.add_argument('source', help='input file name')
@@ -34,7 +42,7 @@ statsoutfile = source+".stats"
 debugoutfile = source+".debug"
 
 if not os.path.isfile(source) or os.path.getsize(source) == 0:
-    sys.exit("Could not read data file or no content: %s" % source);
+    sys.exit("Could not read data file or no content: %s" % source)
 
 print('Processing data file...')
 replace = re.compile(r"\D+")
@@ -62,10 +70,14 @@ if not os.path.isfile(groupssource) or os.path.getsize(groupssource) == 0:
 print('Processing groups...')
 do = open(debugoutfile, 'w')
 so = open(statsoutfile, 'w')
-so.write("Stimulus\tAOI group\tParticipant\tTotal dwell time\tTotal num fixation\tFirst fixation start\tFirst fixation duration\tFirst pass duration\tFirst pass num fixations\tSecond pass start\tSecond pass durations\tSecond pass num fixations\tRe-readings duration\tTotal Skip\tNum regressions into\tSources regressions into\tNum regressions out of\tTargets regressions out of\tTrial no.\tTrial start time\tGroup word count\tGroup char count\n")
+so.write("Stimulus\tAOI group\tParticipant\tTotal dwell time\tTotal num fixation\tFirst fixation start\tFirst fixation duration\tFirst pass duration\t""First pass num fixations\tSecond pass start\tSecond pass durations\tSecond pass num fixations\tRe-readings duration\tTotal Skip\tNum regressions into\tSources regressions into\tNum regressions out of\tTargets regressions out of\tTrial no.\tTrial start time\tGroup word count\tGroup char count\n")
 for line in open(groupssource):
-    print("Processing %s... " % stimulus, end="");
+    if len(line.strip()) <= 1:
+        continue
+    print("Processing {}... ".format(stimulus), end="")
     group = re.split(r"[\t,]", line.strip())
+    if len(group) <= 1:
+        continue
     stimulus = group.pop(0)
     max_group_index = int(max(group, key=int))
     group_word_count = len(group)
@@ -74,6 +86,8 @@ for line in open(groupssource):
     for aoi in group:
         group_char_count += len(aoi_names[stimulus][int_def(aoi)])
         group_str += aoi_names[stimulus][int_def(aoi)] + " "
+        if not len(aoi_names[stimulus][int_def(aoi)]):
+            print('Warning: unknown AOI index {}! '.format(int_def(aoi)), end="")
     for participant, part_data in data[stimulus].items():
         (trial_start, trial_num) = trial[stimulus][participant]
         total_dwelltime = 0
@@ -93,6 +107,8 @@ for line in open(groupssource):
         regressions_outof = 0
         regressions_outof_tgt = []
         do.write("Stimulus {} Participant {} Trial no. {} Trial start time {} Group {} {} Group word count {} Group char count {} \n".format(stimulus, participant, trial_num, trial_start, group, group_str, group_word_count, group_char_count))
+        if not len(aoi_names[stimulus][int_def(aoi)]):
+            do.write("Warning: unknown AOI index {}!\n".format(int_def(aoi)))
         for fixation, fix_data in part_data.items():
             (start, duration, aoi_hit, aoi_name) = fix_data
             do.write("Fix {:>3}:\t {:>25}\t {:>4}\t{:>7.1f}\t{:>8}".format(fixation, aoi_name, aoi_hit, start, duration))
