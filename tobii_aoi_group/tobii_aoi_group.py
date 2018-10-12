@@ -89,6 +89,8 @@ do = open(debugoutfile, 'w')
 so = open(statsoutfile, 'w')
 so.write("Stimulus\tAOI group\tParticipant\tTotal dwell time\tTotal num fixation\tFirst fixation start\tFirst fixation duration\tFirst pass duration\tFirst pass num fixations\tSecond pass start\tSecond pass durations\tSecond pass num fixations\tRe-readings duration\tTotal Skip\tNum regressions into\tSources regressions into\tNum regressions out of\tTargets regressions out of\tTrial start time\tGroup word count\tGroup char count\n")
 for line in open(groupssource):
+    if len(line.strip()) <= 1:
+        continue
     group = re.split(r"[\t,]", line.strip())
     stimulus = group.pop(0)
     max_group_index = int(max(group, key=int))
@@ -99,7 +101,7 @@ for line in open(groupssource):
         for aoi in group:
             group_char_count += len(re.sub(r'\d', '', aoi_names[stimulus][int_def(aoi)]))
             group_str += aoi_names[stimulus][int_def(aoi)] + " "
-    print("Processing %s... " % stimulus, end="");
+    print("Processing {}... ".format(stimulus), end="")
     for participant, part_data in data[stimulus].items():
         total_dwelltime = 0
         num_fix = 0
