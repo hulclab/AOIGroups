@@ -20,7 +20,7 @@ def int_def(value):
 parser = argparse.ArgumentParser(description='Process tobii export data.', argument_default=argparse.SUPPRESS)
 parser.add_argument('source', help='input file name')
 parser.add_argument('--cols', '-c', help='number of fixed cols for aoi detection', default=24)
-parser.add_argument('--nonames', '-n', action='store_false', help='switch to no named aois mode (old behavior)', default=True)
+parser.add_argument('--nonames', '-n', action='store_false', help='switch to no named aois mode (old behavior)')
 args = parser.parse_args()
 
 source = args.source
@@ -54,7 +54,7 @@ trial = hash3d()
 aoi_names = hash3d()
 fix_cols = args.cols
 replace = re.compile(r".*\[(.*)\].*")
-if (args.nonames):
+if (hasattr(args, 'nonames')):
     for l in infile:
         cols = l.split("\t")
         fix_start = str(int(cols[4]) - int(res[(cols[1], cols[3])]))
@@ -82,7 +82,8 @@ else:
                 fix_aoi = replace.sub(r'\1', header[index])
         data[cols[3]][cols[1]][int(cols[21])] = (int(fix_start), int(cols[23]), fix_aoi)
         trial[cols[3]][cols[1]] = res[(cols[1], cols[3])]
-#print (data)
+# import pprint
+# pprint.pprint (data)
 
 print('Processing groups...')
 do = open(debugoutfile, 'w')
@@ -97,7 +98,7 @@ for line in open(groupssource):
     group_word_count = len(group)
     group_char_count = 0
     group_str = ""
-    if (args.nonames):
+    if (hasattr(args, 'nonames')):
         for aoi in group:
             group_char_count += len(re.sub(r'\d', '', aoi_names[stimulus][int_def(aoi)]))
             group_str += aoi_names[stimulus][int_def(aoi)] + " "
@@ -122,7 +123,7 @@ for line in open(groupssource):
         do.write("Stimulus {} Participant {} Trial start time {} Group {} {} Group word count {} Group char count {} \n".format(stimulus, participant, res[(participant, stimulus)], group, group_str, group_word_count, group_char_count))
         for fixation, fix_data in part_data.items():
             (start, duration, aoi_hit) = fix_data
-            if (args.nonames):
+            if (hasattr(args, 'nonames')):
                 do.write("Fix {:>3}:\t {:>25}\t {:>4}\t{:>5}\t{:>8}".format(fixation, aoi_names[stimulus][int_def(aoi_hit)], aoi_hit, start, duration))
             else:
                 do.write("Fix {:>3}:\t {:>4}\t{:>5}\t{:>8}".format(fixation, aoi_hit, start, duration))
