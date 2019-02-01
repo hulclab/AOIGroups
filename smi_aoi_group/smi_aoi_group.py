@@ -65,7 +65,7 @@ with open(listoutfile, 'w') as lo:
                 lo.write("{}, {}, {}\n".format(stimulus, index, name))
 
 if not os.path.isfile(groupssource) or os.path.getsize(groupssource) == 0:
-    sys.exit("Could not read group data file or no content: %s" % groupssource);
+    sys.exit("Could not read group data file or no content: %s" % groupssource)
 
 print('Processing groups...')
 do = open(debugoutfile, 'w')
@@ -115,7 +115,7 @@ for line in open(groupssource):
             if str(aoi_hit) in group:
                 do.write(" <-")
                 num_fix += 1
-                total_dwelltime += duration;
+                total_dwelltime += duration
                 if not first_pass_start:
                     first_pass_start = start
                     first_fix_duration = duration
@@ -138,18 +138,18 @@ for line in open(groupssource):
                     do.write(" SECOND PASS END")
                     second_pass_end = 1
                 if last_fix_aoi in group and int_def(aoi_hit) > 0 and int_def(last_fix_aoi) > int_def(aoi_hit):
-                    regressions_outof+= 1
-                    regressions_outof_tgt.append(aoi_hit);
-            last_fix_aoi = aoi_hit;
+                    regressions_outof += 1
+                    regressions_outof_tgt.append(aoi_hit)
+            last_fix_aoi = aoi_hit
             do.write(" \n")
         total_skip = "FALSE" if first_pass_start else "TRUE"
         reread_duration = total_dwelltime - first_pass_duration
         regressions_into_src_packed = ','.join(map(str, regressions_into_src))
-        regressions_outof_tgt_packed = ','.join(map(str,regressions_outof_tgt))
+        regressions_outof_tgt_packed = ','.join(map(str, regressions_outof_tgt))
         do.write("Last AOI index: {}, Total dwell time: {}, Num fixations: {}\n".format(last_fix_aoi, total_dwelltime, num_fix))
         do.write("First fixation start: {}, First fixation duration: {}, First pass duration: {}, First pass fixations: {}\n".format(first_pass_start, first_fix_duration, first_pass_duration, first_pass_num_fix,))
         do.write("Second pass start: {}, Second pass duration: {}, Second pass fixations: {}, Total skip: {}\n".format(second_pass_start, second_pass_duration, second_pass_num_fix, total_skip))
         do.write("Num regressions into: {}, Sources regressions into: {}, Num regressions out of: {}, Targets regressions out of: {}\n\n".format(regressions_into, regressions_into_src_packed, regressions_outof, regressions_outof_tgt_packed))
-        so.write("{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\n".format(stimulus, ",".join(group), participant, total_dwelltime, num_fix, first_pass_start, first_fix_duration,first_pass_duration, first_pass_num_fix, second_pass_start, second_pass_duration, second_pass_num_fix, reread_duration, total_skip, regressions_into, regressions_into_src_packed, regressions_outof, regressions_outof_tgt_packed, trial_num, trial_start, group_word_count, group_char_count))
+        so.write("{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\n".format(stimulus, ",".join(group), participant, total_dwelltime, num_fix, first_pass_start, first_fix_duration, first_pass_duration, first_pass_num_fix, second_pass_start, second_pass_duration, second_pass_num_fix, reread_duration, total_skip, regressions_into, regressions_into_src_packed, regressions_outof, regressions_outof_tgt_packed, trial_num, trial_start, group_word_count,  group_char_count))
     print('done.')
 print('All done.')
