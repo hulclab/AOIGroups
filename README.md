@@ -31,17 +31,17 @@ To calculate group metrics, create a file named `SOURCE.groups`. Define your gro
 Critical_T1_C1a 7,8,9,10
 ``` 
 You can enter multiple lines in one `SOURCE.groups` file, which will be processed consecutively.  
-On second execution (if a valid `SOURCE.groups` file is present), the tool generates a `SOURCE.stats` file like this:
+On second execution (if a valid `SOURCE.groups` file is present), the tool generates a `SOURCE.stats` file like this: 
 ```
-Stimulus | AOI group | Participant | Total dwell time | Mean dwelltime per word | Total num fixation | First fixation start | First fixation duration | First pass duration | First pass mean dwelltime per word | First pass num fixations | Second pass start | Second pass durations | Second pass num fixations | Re-readings duration | Total Skip | Num regressions into | Sources regressions into | Num regressions out of | Targets regressions out of | Trial no. | Trial start time | Group word count | Group char count
-Critical_T1_C1a | 7,8,9,10 | EXP_01_P_01 | 356.2 | 89.1 | 3 | 1216.0 | 134.0 | 356.2 | 89.1 | 3 | 0.0 | 0.0 | 0 | 0.0 | 0.0 | FALSE | 0.0 |  | 0 |  | 2 | 27036112.4 | 4 | 12
-Critical_T1_C1a | 7,8,9,10 | EXP_01_P_02 | 1129.1 | 282.3 | 6 | 6763.7 | 352.1 | 880.9 | 220.2 | 4 | 12658.1 | 118.1 | 1 | 248.2 | 62.1 | FALSE | 2.0 | 18,15 | 0 |  | 4 | 1721543.4 | 4 | 12
-Critical_T1_C1a | 7,8,9,10 | EXP_01_P_03 | 386.2 | 96.6 | 4 | 1274.5 | 70.0 | 386.2 | 96.6 | 4 | 0.0 | 0.0 | 0 | 0.0 | 0.0 | FALSE | 1.0 | 8 | 0 |  | 11 | 2425390.3 | 4 | 12
-Critical_T1_C1a | 7,8,9,10 | EXP_01_P_04 | 126.1 | 31.5 | 1 | 1403.4 | 126.1 | 126.1 | 31.5 | 1 | 0.0 | 0.0 | 0 | 0.0 | 0.0 | FALSE | 0.0 |  | 0 |  | 15 | 902713.3 | 4 | 12
-Critical_T1_C1a | 7,8,9,10 | EXP_01_P_06 | 700.1 | 175.0 | 4 | 1808.1 | 320.1 | 320.1 | 80.0 | 1 | 4055.2 | 222.0 | 2 | 380.0 | 95.0 | FALSE | 2.0 | 18,18 | 0 |  | 4 | 2565602.6 | 4 | 12
-Critical_T1_C1a | 7,8,9,10 | EXP_01_P_07 | 448.2 | 112.0 | 4 | 1873.7 | 190.1 | 448.2 | 112.0 | 4 | 0.0 | 0.0 | 0 | 0.0 | 0.0 | FALSE | 0.0 |  | 0 |  | 2 | 4545946.0 | 4 | 12
-Critical_T1_C1a | 7,8,9,10 | EXP_01_P_08 | 250.0 | 62.5 | 2 | 2443.8 | 104.0 | 250.0 | 62.5 | 2 | 0.0 | 0.0 | 0 | 0.0 | 0.0 | FALSE | 0.0 |  | 0 |  | 4 | 1799017.6 | 4 | 12
-Critical_T1_C1a | 7,8,9,10 | EXP_01_P_09 | 334.0 | 83.5 | 4 | 1421.1 | 66.0 | 280.0 | 70.0 | 3 | 3107.9 | 54.0 | 1 | 54.0 | 13.5 | FALSE | 2.0 | 9,14 | 0 |  | 19 | 3867765.5 | 4 | 12
+Stimulus	AOI group	Participant	Total dwell time	Mean dwelltime per word	Total num fixation	First fixation start	First fixation duration	First pass duration	First pass mean dwelltime per word	First pass num fixations	Second pass start	Second pass durations	Second pass num fixations	Re-readings duration	Total Skip	Num regressions into	Sources regressions into	Num regressions out of	Targets regressions out of	Trial no.	Trial start time	Group word count	Group char count
+Critical_T1_C1a	7,8,9,10	EXP_01_P_01	356.2	89.1	3	1216.0	134.0	356.2	89.1	3	0.0	0.0	0	0.0	0.0	FALSE	0.0		0		2	27036112.4	4	12
+Critical_T1_C1a	7,8,9,10	EXP_01_P_02	1129.1	282.3	6	6763.7	352.1	880.9	220.2	4	12658.1	118.1	1	248.2	62.1	FALSE	2.0	18,15	0		4	1721543.4	4	12
+Critical_T1_C1a	7,8,9,10	EXP_01_P_03	386.2	96.6	4	1274.5	70.0	386.2	96.6	4	0.0	0.0	0	0.0	0.0	FALSE	1.0	8	0		11	2425390.3	4	12
+Critical_T1_C1a	7,8,9,10	EXP_01_P_04	126.1	31.5	1	1403.4	126.1	126.1	31.5	1	0.0	0.0	0	0.0	0.0	FALSE	0.0		0		15	902713.3	4	12
+Critical_T1_C1a	7,8,9,10	EXP_01_P_06	700.1	175.0	4	1808.1	320.1	320.1	80.0	1	4055.2	222.0	2	380.0	95.0	FALSE	2.0	18,18	0		4	2565602.6	4	12
+Critical_T1_C1a	7,8,9,10	EXP_01_P_07	448.2	112.0	4	1873.7	190.1	448.2	112.0	4	0.0	0.0	0	0.0	0.0	FALSE	0.0		0		2	4545946.0	4	12
+Critical_T1_C1a	7,8,9,10	EXP_01_P_08	250.0	62.5	2	2443.8	104.0	250.0	62.5	2	0.0	0.0	0	0.0	0.0	FALSE	0.0		0		4	1799017.6	4	12
+Critical_T1_C1a	7,8,9,10	EXP_01_P_09	334.0	83.5	4	1421.1	66.0	280.0	70.0	3	3107.9	54.0	1	54.0	13.5	FALSE	2.0	9,14	0		19	3867765.5	4	12
 ...
 ```
 Additionally, a `SOURCE.debug` file is created with detailed information on the AOI matching and calculations, which can be consulted in case the stats file contains unplausible results: 
