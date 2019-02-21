@@ -1,3 +1,9 @@
+*.txt
+*.debug
+*.groups
+*.list
+*.stats
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
