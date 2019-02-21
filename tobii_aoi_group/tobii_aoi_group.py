@@ -47,7 +47,7 @@ for l in open(fullsource):
 #print (res)
 
 print('Processing data file...')
-infile = open(source)
+infile = open(source, encoding='utf-8')
 header = infile.readline().split("\t")
 data = defaultdict(hash3d)
 trial = hash3d()
