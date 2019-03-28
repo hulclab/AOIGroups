@@ -96,6 +96,7 @@ Last AOI index: 8, Total dwell time: 700.1, Num fixations: 4
 ...
 ``` 
 ### tobii-aoi-group
+Basically the same tool, modified to work with TSV export files from Tobii Pro Studio.  
 
 ## Authors
 
